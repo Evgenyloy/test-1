@@ -1,0 +1,153 @@
+.warehouse-item {
+  margin-bottom: 40px;
+
+  &__inner {
+    display: flex;
+    padding: 10px 10px;
+    border: 1px solid rgb(224, 227, 238);
+    border-radius: 20px;
+  }
+
+  &__col-1 {
+  }
+
+  &__col-2 {
+    padding-inline: 20px;
+    min-width: 314px;
+  }
+}
+
+.col-1 {
+  &__inner {
+    display: flex;
+    gap: 20px;
+  }
+
+  &__img {
+  }
+
+  &__info {
+  }
+}
+.info {
+  &__type {
+    color: rgb(150, 157, 195);
+    margin-bottom: 15px;
+  }
+
+  &__name {
+    color: rgb(45, 59, 135);
+
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 125%;
+    margin-bottom: 25px;
+  }
+
+  &__place {
+    display: inline-block;
+    padding: 5px;
+    color: rgb(97, 108, 165);
+    margin-bottom: 17px;
+    border-radius: 5px;
+    background: rgb(244, 245, 249);
+  }
+
+  &__seller {
+    color: rgb(45, 59, 135);
+    margin-bottom: 17px;
+    font-weight: 500;
+    span {
+      color: rgb(150, 157, 195);
+    }
+  }
+
+  &__inner {
+  }
+
+  &__kind {
+    line-height: 1.4;
+    padding: 5px;
+    display: inline-block;
+    color: rgb(97, 108, 165);
+    border-radius: 10px;
+    background: rgb(244, 245, 249);
+    margin-bottom: 15px;
+    span {
+      color: rgb(150, 157, 195);
+    }
+  }
+
+  &__desc {
+    color: rgb(45, 59, 135);
+    font-family: Rubik;
+    line-height: 150%;
+    font-weight: 500;
+  }
+}
+.col-2 {
+  position: relative;
+  &__inner {
+  }
+
+  &__price {
+    color: rgb(45, 59, 135);
+    font-size: 20px;
+    font-weight: 500;
+
+    margin-bottom: 20px;
+  }
+
+  &__qty-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  &__qty-text {
+    color: rgb(150, 157, 195);
+  }
+
+  &__qty {
+    color: rgb(45, 59, 135);
+  }
+
+  &__btns-inner {
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+  }
+
+  &__btn {
+    cursor: pointer;
+    color: rgb(45, 59, 135);
+    font-size: 15px;
+    font-weight: 500;
+    padding: 17px 35px;
+    border-radius: 10px;
+    background: rgb(244, 245, 249);
+    transition: all 0.1s linear;
+    &:hover {
+      background: rgb(40, 43, 53);
+      color: white;
+    }
+  }
+  &__icons {
+    cursor: pointer;
+    width: 45px;
+    height: 45px;
+    padding: 10px;
+    background-color: rgb(244, 245, 249);
+    border-radius: 10px;
+    transition: all 0.1s linear;
+    &:hover {
+      background: rgb(40, 43, 53);
+      fill: white;
+    }
+  }
+}

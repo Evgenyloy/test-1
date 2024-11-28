@@ -1,3 +1,5 @@
-@import './reset.scss';
-@import './common.scss';
-@import '../components/header/header.module.scss';
+@use './reset.scss';
+@use './common.scss';
+@use '../components/header/header.module.scss';
+@use '../components/filter/filter.module.scss';
+@use '../components/search/search.module.scss';
