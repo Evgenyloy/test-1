@@ -1,9 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
-import slice from '../slices/slice';
+import favorites from '../components/favorites/favoritesSlice';
+import dealings from '../components/dealings/dealingsSlice';
+import warehouse from '../components/warehouse/warehouseSlice';
+import filter from '../components/filterAndSearch/filtersSlice';
 
 const store = configureStore({
   reducer: {
-    slice,
+    favorites,
+    dealings,
+    warehouse,
+    filter,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });

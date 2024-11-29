@@ -1,10 +1,10 @@
-import { filterChanged } from '../../slices/slice';
+import { filterChanged } from '../filterAndSearch/filtersSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import './filter.module.scss';
 
 function Filter() {
   const dispatch = useAppDispatch();
-  const filter = useAppSelector((state) => state.slice.filter);
+  const filter = useAppSelector((state) => state.filter.filter);
 
   const handleClick = (
     e: React.MouseEvent<HTMLParagraphElement, MouseEvent>

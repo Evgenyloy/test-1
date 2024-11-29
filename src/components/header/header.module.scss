@@ -8,7 +8,8 @@
       left: 0;
       background: rgb(224, 227, 238);
       border-radius: 0px 0px 10px 10px;
-      width: 1200px;
+      width: 100%;
+      max-width: 1200px;
       height: 40px;
     }
   }
@@ -35,6 +36,14 @@
     &:hover .header__icon {
       transform: scale(1.2);
     }
+  }
+  &__item-counter {
+    font-size: 12px;
+    position: absolute;
+    right: 22px;
+    top: 5px;
+    width: 5px;
+    height: 5px;
   }
   &__icon {
     transition: all 0.1s linear;

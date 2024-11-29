@@ -1,53 +1,41 @@
-import React, { useEffect } from 'react';
-import WarehouseItem from '../warehouseItem/WarehouseItem';
+import React from 'react';
+import RenderItem from '../renderItem/RenderItem.tsx';
 import { useAppSelector } from '../../hooks/hooks.tsx';
-import { fetchData } from '../../slices/slice.tsx';
-import { useAppDispatch } from '../../hooks/hooks.tsx';
-import './warehouse.module.scss';
-
-function filterData(data: IRequestData[], filter: string) {
-  if (filter === 'Все типы') return data;
-
-  return data.filter((item) => item.offer === filter);
-}
-
-function searchItem(data: IRequestData[], searchString: string) {
-  if (searchString === '') return data;
-  return data.filter((item) =>
-    item.name.toLowerCase().startsWith(searchString.toLowerCase())
-  );
-}
-
-export interface IRequestData {
-  city: string;
-  description: string;
-  id: number;
-  name: string;
-  offer: string;
-  price: number;
-  quantity: number;
-  seller: string;
-}
+import { checkAvailability } from '../../utils/utils.tsx';
+import { filteredWarehouseSelector } from './warehouseSlice.tsx';
+import { useFavoriteClick, useBtnClick } from '../../hooks/hooks.tsx';
+import { IData } from '../../types/types.tsx';
 
 function Warehouse() {
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(fetchData());
-  }, []);
+  const items = useAppSelector(filteredWarehouseSelector);
+  const dealing = useAppSelector((state) => state.dealings.dealings);
+  const favorites = useAppSelector((state) => state.favorites.favorites);
+  const { handleFavoriteClick } = useFavoriteClick();
+  const { handleBtnClick } = useBtnClick();
 
-  const { search, data, filter } = useAppSelector((state) => state.slice);
+  const itemsView = items?.map((item: IData) => {
+    let buttonName;
+    !checkAvailability(dealing, item.id)
+      ? (buttonName = 'Добавить в сделки')
+      : (buttonName = 'Удалить из Сделок');
+    const buttonClass = 'col-2__btn';
 
-  const datav = searchItem(filterData(data, filter), search);
-
-  const items = datav.map((item: IRequestData) => {
     return (
       <React.Fragment key={item.id}>
-        <WarehouseItem item={item} />;
+        <RenderItem
+          item={item}
+          handleBtnClick={() => handleBtnClick(dealing, item.id, item)}
+          handleFavoriteClick={() =>
+            handleFavoriteClick(favorites, item.id, item)
+          }
+          buttonName={buttonName}
+          buttonClass={buttonClass}
+        />
       </React.Fragment>
     );
   });
 
-  return <div>{items}</div>;
+  return <section className="section">{itemsView}</section>;
 }
 
 export default Warehouse;

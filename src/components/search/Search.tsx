@@ -1,6 +1,6 @@
 import { IoMdSearch } from 'react-icons/io';
 import { useState } from 'react';
-import { searchChanged } from '../../slices/slice';
+import { searchChanged } from '../filterAndSearch/filtersSlice';
 import { useAppDispatch } from '../../hooks/hooks';
 import './search.module.scss';
 

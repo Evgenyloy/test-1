@@ -1,28 +1,42 @@
 import { FC } from 'react';
-import { IRequestData } from '../warehouse/Warehouse';
+import { IData } from '../../types/types.tsx';
 import img from '../../image/Image.jpeg';
-import { useAppDispatch } from '../../hooks/hooks';
-import { setDealing } from '../../slices/slice';
 import { MdFavoriteBorder } from 'react-icons/md';
-
-import './warehouseItem.scss';
+import { useAppSelector } from '../../hooks/hooks';
+import { useFavoriteClick } from '../../hooks/hooks';
+import './index.scss';
 
 interface IWarehouseItemProps {
-  item: IRequestData;
+  item: IData;
+  handleBtnClick?: () => void;
+  handleFavoriteClick?: () => void;
+  buttonName?: string;
+  buttonClass?: string;
 }
 
-const WarehouseItem: FC<IWarehouseItemProps> = ({ item }) => {
-  const { offer, name, city, seller, price, quantity, description } = item;
+const RenderItem: FC<IWarehouseItemProps> = ({
+  item,
+  handleBtnClick,
+  buttonName,
+  buttonClass,
+}) => {
+  const { offer, name, city, seller, price, quantity, description, id } = item;
 
-  const dispatch = useAppDispatch();
+  const { handleFavoriteClick } = useFavoriteClick();
+  const favorites = useAppSelector((state) => state.favorites.favorites);
+  const className = favorites.some((item) => item.id === id)
+    ? 'col-2__icons col-2__icons--checked'
+    : 'col-2__icons';
 
   return (
-    <div className="warehouse-item">
+    <div className="render-item">
       <div className="container">
-        <div className="warehouse-item__inner">
-          <div className="warehouse-item__col-1 col-1">
+        <div className="render-item__inner">
+          <div className="render-item__col-1 col-1">
             <div className="col-1__inner">
-              <img src={img} alt="woods" className="col-1__img" />
+              <div className="col-1__img-cont">
+                <img src={img} alt="woods" className="col-1__img" />
+              </div>
               <div className="col-1__info info">
                 <p className="info__type">{offer}</p>
                 <p className="info__name">{name}</p>
@@ -42,7 +56,7 @@ const WarehouseItem: FC<IWarehouseItemProps> = ({ item }) => {
               </div>
             </div>
           </div>
-          <div className="warehouse-item__col-2 col-2">
+          <div className="render-item__col-2 col-2">
             <div className="col-2__inner">
               <p className="col-2__price">{price * quantity + ' ₽'}</p>
               <div className="col-2__qty-inner">
@@ -53,15 +67,19 @@ const WarehouseItem: FC<IWarehouseItemProps> = ({ item }) => {
                 <p className="col-2__qty-text">Стоимость за штуку</p>
                 <p className="col-2__qty">{price + ' ₽'}</p>
               </div>
-              <div className="col-2__btns-inner">
-                <p
-                  className="col-2__btn"
-                  onClick={() => dispatch(setDealing(item))}
-                >
-                  Добавить в сделки
-                </p>
-                <MdFavoriteBorder className="col-2__icons" />
-              </div>
+            </div>
+            <div className="col-2__btns-inner">
+              <p
+                className={buttonClass}
+                id={id.toString()}
+                onClick={handleBtnClick}
+              >
+                {buttonName}
+              </p>
+              <MdFavoriteBorder
+                className={className}
+                onClick={() => handleFavoriteClick(favorites, item.id, item)}
+              />
             </div>
           </div>
         </div>
@@ -70,4 +88,4 @@ const WarehouseItem: FC<IWarehouseItemProps> = ({ item }) => {
   );
 };
 
-export default WarehouseItem;
+export default RenderItem;
