@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import Warehouse from '../warehouse/Warehouse';
 import Header from '../header/Header';
 import FilterAndSearch from '../filterAndSearch/FilterAndSearch';
