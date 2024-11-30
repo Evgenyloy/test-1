@@ -7,13 +7,12 @@ const MainLayout = () => {
   const { dataLoadingStatus, data } = useAppSelector(
     (state) => state.warehouse
   );
-  console.log(dataLoadingStatus);
 
   return (
     <>
       {dataLoadingStatus === 'loading' && <Spinner />}
       {dataLoadingStatus === 'error' && (
-        <Error text={'ошибка загрузки данных'} />
+        <Error text={'Ошибка загрузки данных'} />
       )}
       {data && <Outlet />}
     </>

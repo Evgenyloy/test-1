@@ -1,17 +1,10 @@
-import { createSlice, PayloadAction, createSelector } from '@reduxjs/toolkit';
+import { createSlice, createSelector } from '@reduxjs/toolkit';
 import { IData } from '../../types/types';
 import { createAppAsyncThunk } from '../../types/types';
 import { RootState } from '../../types/types';
 import { filterItems } from '../../utils/utils';
 import { useHttp } from '../../hooks/http.hook';
-
-const json1 =
-  'https://github.com/evgenyloy/repo-main-db.json/blob/[main|master]/db.json';
-
-const json2 = 'https://dummyjson.com/c/ad42-e123-4545-a0e5';
-
-const json3 =
-  'https://api.jsonsilo.com/public/de99263a-e84a-4527-bb6d-148387d3d835';
+import { json2 } from '../../data';
 
 export const fetchData = createAppAsyncThunk<IData[]>('data/fetchData', () => {
   const { request } = useHttp();
